@@ -248,8 +248,11 @@
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Web App URL ពី Google Sheet
-            const scriptURL = 'https://docs.google.com/spreadsheets/d/1OLrULVFzTNmhdjL-FhZhkS0ybNMFHc7nIp8IGEfIYpw/edit?gid=0#gid=0'; 
+            // 🛑 កន្លែងត្រូវដាក់ Link: 
+            // ដាច់ខាត "មិនមែន" Link Google Sheet (docs.google.com) ទេ! 
+            // លោកអ្នកត្រូវដាក់ "Web App URL" ដែលបានមកពីការ Deploy នៅក្នុង Apps Script។ 
+            // វាមានទម្រង់ដូចជា: https://script.google.com/macros/s/......./exec
+            const scriptURL = 'YOUR_WEB_APP_URL_HERE'; 
             
             // Update button state for loading effect
             const originalBtnText = submitBtn.innerHTML;
@@ -267,10 +270,17 @@
 
             const formData = new FormData(form);
             
+            // ពិនិត្យមើលថាតើលោកអ្នកដាក់ Link ខុសឬអត់
+            if (scriptURL.includes('docs.google.com/spreadsheets/d/')) {
+                alert("សុំទោស! លោកអ្នកបានដាក់ Link Google Sheet (docs.google.com/...) ចូលក្នុងកូដ ដែលធ្វើឲ្យទិន្នន័យមិនអាចបញ្ជូនបាន។\n\nសូមបង្កើត Apps Script ហើយយក 'Web App URL' (ដែលផ្តើមដោយ https://script.google.com/...) មកដាក់ជំនួសវិញ។");
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                return;
+            }
+
             // If URL is not changed yet, simulate successful submission
-            if (scriptURL === 'https://docs.google.com/spreadsheets/d/1OLrULVFzTNmhdjL-FhZhkS0ybNMFHc7nIp8IGEfIYpw/edit?gid=123141317#gid=123141317' || scriptURL === '' || scriptURL.includes('docs.google.com/spreadsheets/d/')) {
-                // Note: Direct sheet link won't work for POST, so we simulate success here 
-                // until you replace it with the actual Google Apps Script Web App URL
+            if (scriptURL === 'https://script.google.com/macros/s/AKfycbyPsk6Olb8tUB3Ayg_FR2J6FX_NpcMjKhOm0B6Bx3KQbFP_2wxx897agW33100ziQvI/exec' || scriptURL === '') {
                 setTimeout(() => {
                     showSuccess();
                 }, 1500);
