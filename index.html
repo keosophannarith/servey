@@ -249,10 +249,8 @@
             e.preventDefault();
             
             // 🛑 កន្លែងត្រូវដាក់ Link: 
-            // ដាច់ខាត "មិនមែន" Link Google Sheet (docs.google.com) ទេ! 
-            // លោកអ្នកត្រូវដាក់ "Web App URL" ដែលបានមកពីការ Deploy នៅក្នុង Apps Script។ 
-            // វាមានទម្រង់ដូចជា: https://script.google.com/macros/s/......./exec
-            const scriptURL = 'YOUR_WEB_APP_URL_HERE'; 
+            // នេះគឺជា Web App URL ដែលលោកអ្នកទទួលបាន
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyPsk6Olb8tUB3Ayg_FR2J6FX_NpcMjKhOm0B6Bx3KQbFP_2wxx897agW33100ziQvI/exec'; 
             
             // Update button state for loading effect
             const originalBtnText = submitBtn.innerHTML;
@@ -279,24 +277,19 @@
                 return;
             }
 
-            // If URL is not changed yet, simulate successful submission
-            if (scriptURL === 'https://script.google.com/macros/s/AKfycbyPsk6Olb8tUB3Ayg_FR2J6FX_NpcMjKhOm0B6Bx3KQbFP_2wxx897agW33100ziQvI/exec' || scriptURL === '') {
-                setTimeout(() => {
+            // បញ្ជូនទិន្នន័យផ្ទាល់ទៅ Google Sheets
+            fetch(scriptURL, { method: 'POST', body: formData })
+                .then(response => {
                     showSuccess();
-                }, 1500);
-            } else {
-                fetch(scriptURL, { method: 'POST', body: formData })
-                    .then(response => {
-                        showSuccess();
-                    })
-                    .catch(error => {
-                        console.error('Error!', error.message);
-                        alert('មានបញ្ហាក្នុងការបញ្ជូនទិន្នន័យ។ / Error submitting data.');
-                        submitBtn.innerHTML = originalBtnText;
-                        submitBtn.disabled = false;
-                        submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-                    });
-            }
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    alert('មានបញ្ហាក្នុងការបញ្ជូនទិន្នន័យ។ / Error submitting data.');
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                });
+            
         });
 
         function showSuccess() {
