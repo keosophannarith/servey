@@ -130,9 +130,10 @@
         <div class="p-5 md:p-8" id="formSection">
             
             <div class="text-center mb-6">
-                <h2 class="text-lg md:text-xl font-bold text-gray-800 mb-4 whitespace-nowrap overflow-hidden text-ellipsis px-2">
+                <!-- Removed whitespace-nowrap and overflow classes to allow wrapping on mobile -->
+                <h2 class="text-lg md:text-xl font-bold text-gray-800 mb-4 px-2 leading-tight">
                     កម្មវិធី តាំងបង្ហាញលទ្ឋផលគម្រោងសិក្សា នៅថ្ងៃបញ្ចប់ឆ្នាំសិក្សា ២០២៥-២០២៦
-                    <span class="block text-base font-normal text-gray-500 mt-0.5 whitespace-normal">End-Year Student Learning Exhibits AY 2025-2026</span>
+                    <span class="block text-base font-normal text-gray-500 mt-1">End-Year Student Learning Exhibits AY 2025-2026</span>
                 </h2>
                 
                 <div class="bg-purple-50/50 border border-purple-100 rounded-xl p-4 text-left text-sm text-gray-700 space-y-3 shadow-inner">
@@ -185,34 +186,41 @@
                     <label class="block text-gray-800 font-semibold mb-2">
                         សូមបញ្ជាក់ពីការចូលរួមរបស់លោកអ្នក <span class="text-gray-500 font-normal text-sm">/ Confirm attendance</span> <span class="text-red-500">*</span>
                     </label>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3" id="attendanceGrid">
                         
-                        <label class="relative cursor-pointer group">
-                            <input type="radio" name="attendance" value="បានចូលរួម" required class="peer sr-only">
-                            <div class="flex items-center p-3 border-2 border-gray-200 rounded-lg transition-all duration-200 ease-in-out group-hover:bg-purple-50 peer-checked:border-makson peer-checked:bg-purple-50">
+                        <label class="relative cursor-pointer group" id="labelAttend">
+                            <input type="radio" name="attendance" value="បានចូលរួម" required class="peer sr-only" id="radioAttend">
+                            <div class="flex items-center p-3 border-2 border-gray-200 rounded-lg transition-all duration-300 ease-in-out group-hover:bg-purple-50 peer-checked:border-makson peer-checked:bg-purple-50">
                                 <div class="w-4 h-4 rounded-full border-2 border-gray-300 mr-3 flex items-center justify-center peer-checked:border-makson shrink-0">
                                     <div class="w-2 h-2 rounded-full bg-makson scale-0 transition-transform duration-200 peer-checked:scale-100 radio-inner"></div>
                                 </div>
-                                <span class="text-gray-800 font-medium peer-checked:text-makson text-sm leading-tight">
+                                <span class="text-gray-800 font-medium peer-checked:text-makson text-sm leading-tight flex-1">
                                     បាទ/ចាស បានចូលរួម<br>
                                     <span class="text-xs font-normal text-gray-500 peer-checked:text-makson-light">Yes, I will attend</span>
                                 </span>
                             </div>
                         </label>
 
-                        <label class="relative cursor-pointer group">
-                            <input type="radio" name="attendance" value="មិនបានចូលរួម" class="peer sr-only">
-                            <div class="flex items-center p-3 border-2 border-gray-200 rounded-lg transition-all duration-200 ease-in-out group-hover:bg-purple-50 peer-checked:border-makson peer-checked:bg-purple-50">
+                        <label class="relative cursor-pointer group" id="labelNotAttend">
+                            <input type="radio" name="attendance" value="មិនបានចូលរួម" class="peer sr-only" id="radioNotAttend">
+                            <div class="flex items-center p-3 border-2 border-gray-200 rounded-lg transition-all duration-300 ease-in-out group-hover:bg-purple-50 peer-checked:border-makson peer-checked:bg-purple-50">
                                 <div class="w-4 h-4 rounded-full border-2 border-gray-300 mr-3 flex items-center justify-center peer-checked:border-makson shrink-0">
                                     <div class="w-2 h-2 rounded-full bg-makson scale-0 transition-transform duration-200 peer-checked:scale-100 radio-inner"></div>
                                 </div>
-                                <span class="text-gray-800 font-medium peer-checked:text-makson text-sm leading-tight">
+                                <span class="text-gray-800 font-medium peer-checked:text-makson text-sm leading-tight flex-1">
                                     មិនបានចូលរួមទេ<br>
                                     <span class="text-xs font-normal text-gray-500 peer-checked:text-makson-light">No, I cannot attend</span>
                                 </span>
                             </div>
                         </label>
 
+                    </div>
+                    
+                    <!-- Reset button (Hidden by default) -->
+                    <div id="resetSelectionBtn" class="hidden mt-2 text-right">
+                        <button type="button" class="text-xs text-makson hover:text-makson-dark underline" onclick="resetAttendanceSelection()">
+                            ប្តូរការសម្រេចចិត្ត / Change decision
+                        </button>
                     </div>
                 </div>
 
@@ -275,6 +283,44 @@
         const successMessage = document.getElementById('successMessage');
         const formSection = document.getElementById('formSection');
         const submitBtn = document.getElementById('submitBtn');
+        
+        // Elements for hiding radio buttons
+        const labelAttend = document.getElementById('labelAttend');
+        const labelNotAttend = document.getElementById('labelNotAttend');
+        const attendanceGrid = document.getElementById('attendanceGrid');
+        const resetSelectionBtn = document.getElementById('resetSelectionBtn');
+        const radioAttend = document.getElementById('radioAttend');
+        const radioNotAttend = document.getElementById('radioNotAttend');
+
+        function updateRadioVisibility(selectedValue) {
+            if (selectedValue === 'បានចូលរួម') {
+                labelNotAttend.classList.add('hidden');
+                labelAttend.classList.remove('hidden');
+                attendanceGrid.classList.remove('md:grid-cols-2');
+                attendanceGrid.classList.add('grid-cols-1');
+                resetSelectionBtn.classList.remove('hidden');
+            } else if (selectedValue === 'មិនបានចូលរួម') {
+                labelAttend.classList.add('hidden');
+                labelNotAttend.classList.remove('hidden');
+                attendanceGrid.classList.remove('md:grid-cols-2');
+                attendanceGrid.classList.add('grid-cols-1');
+                resetSelectionBtn.classList.remove('hidden');
+            }
+        }
+
+        // Global function to reset radio selection
+        window.resetAttendanceSelection = function() {
+            radioAttend.checked = false;
+            radioNotAttend.checked = false;
+            
+            labelAttend.classList.remove('hidden');
+            labelNotAttend.classList.remove('hidden');
+            attendanceGrid.classList.remove('grid-cols-1');
+            attendanceGrid.classList.add('md:grid-cols-2');
+            resetSelectionBtn.classList.add('hidden');
+            
+            toggleFields(''); // Hide extra fields
+        };
 
         function toggleFields(attendanceValue) {
             if(attendanceValue === 'មិនបានចូលរួម') {
@@ -311,14 +357,37 @@
                     }, 10);
                     attendeeCountInput.setAttribute('required', 'true');
                 }
+            } else {
+                // Handle reset state (hide both)
+                reasonContainer.classList.remove('opacity-100', 'translate-y-0');
+                reasonContainer.classList.add('opacity-0', '-translate-y-2');
+                setTimeout(() => {
+                    reasonContainer.classList.add('hidden');
+                }, 300);
+                reasonInput.removeAttribute('required');
+                
+                if(attendeeCountContainer) {
+                    attendeeCountContainer.classList.remove('opacity-100', 'translate-y-0');
+                    attendeeCountContainer.classList.add('opacity-0', '-translate-y-2');
+                    setTimeout(() => {
+                        attendeeCountContainer.classList.add('hidden');
+                    }, 300);
+                    attendeeCountInput.removeAttribute('required');
+                }
             }
         }
 
         const checkedRadio = document.querySelector('input[name="attendance"]:checked');
-        if (checkedRadio) toggleFields(checkedRadio.value);
+        if (checkedRadio) {
+            toggleFields(checkedRadio.value);
+            updateRadioVisibility(checkedRadio.value);
+        }
 
         attendRadios.forEach(radio => {
-            radio.addEventListener('change', (e) => toggleFields(e.target.value));
+            radio.addEventListener('change', (e) => {
+                toggleFields(e.target.value);
+                updateRadioVisibility(e.target.value);
+            });
         });
 
         form.addEventListener('submit', (e) => {
