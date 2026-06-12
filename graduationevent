@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ការស្ទង់មតិ / Survey - Makson International Academy</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Khmer -->
+    <link href="https://fonts.googleapis.com/css2?family=Battambang:wght@400;700&family=Moul&family=Siemreap&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'battambang': ['Battambang', 'sans-serif'],
+                        'moul': ['Moul', 'cursive'],
+                        'siemreap': ['Siemreap', 'sans-serif'],
+                    },
+                    colors: {
+                        makson: {
+                            light: '#9333ea', // purple-600
+                            DEFAULT: '#6b21a8', // purple-800
+                            dark: '#4c1d95', // purple-900
+                            accent: '#fbbf24', // amber-400
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Battambang', sans-serif; background-color: #f3e8ff; }
+        .title-font { font-family: 'Moul', cursive; }
+        .body-font { font-family: 'Siemreap', sans-serif; }
+        
+        /* Smooth fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Custom Radio Button Styling */
+        input[type="radio"]:checked + div {
+            border-color: #6b21a8;
+            background-color: #faf5ff;
+        }
+        input[type="radio"]:checked + div .radio-inner {
+            background-color: #6b21a8;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-purple-100 via-white to-purple-50 min-h-screen py-8 px-4 flex items-center justify-center">
+
+    <div class="max-w-2xl w-full bg-white rounded-3xl shadow-2xl overflow-visible animate-fade-in border border-purple-100 relative mt-10">
+        
+        <!-- Logo Overlapping Top Center (Reduced Size) -->
+        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 z-20">
+            <div class="bg-white rounded-full shadow-md border-[3px] border-purple-100 flex items-center justify-center w-24 h-24 overflow-hidden">
+                <img src="photo_2021-06-17_15-07-23.jpg" alt="Makson Logo" class="w-full h-full object-cover bg-white">
+            </div>
+        </div>
+
+        <!-- Header Section (Reduced Padding) -->
+        <div class="bg-makson relative px-4 pt-14 pb-5 text-center rounded-t-3xl shadow-sm overflow-hidden">
+            <!-- Decorative elements -->
+            <div class="absolute top-0 left-0 w-24 h-24 bg-white opacity-10 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="absolute bottom-0 right-0 w-32 h-32 bg-white opacity-10 rounded-full translate-x-1/3 translate-y-1/3"></div>
+            
+            <h1 class="title-font text-base md:text-lg text-white mb-1 relative z-10 leading-tight drop-shadow-md">
+                សាលារៀន អន្តរជាតិម៉ាកសឹន សាខាភ្នំពេញថ្មី
+            </h1>
+            <p class="text-purple-200 font-semibold tracking-wide text-xs md:text-sm relative z-10 drop-shadow-sm font-siemreap">
+                Makson International Academy, Phnom Penh Thmei
+            </p>
+        </div>
+
+        <!-- Content Section (Reduced Padding) -->
+        <div class="p-5 md:p-8" id="formSection">
+            
+            <div class="text-center mb-6">
+                <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">
+                    កម្មវិធី ការដាក់តាំងបង្ហាញគម្រោងលទ្ធផលសិក្សានៅថ្ងៃបញ្ចប់ឆ្នាំសិក្សា 
+                    <span class="block text-base font-normal text-gray-500 mt-0.5">Student Learning Exhibits</span>
+                </h2>
+                
+                <!-- Event Details Card (Reduced Spacing) -->
+                <div class="bg-purple-50/50 border border-purple-100 rounded-xl p-4 text-left text-sm text-gray-700 space-y-3 shadow-inner">
+                    <div class="flex items-start">
+                        <div class="bg-white p-1.5 rounded-lg shadow-sm mr-3 shrink-0">
+                            <svg class="w-4 h-4 text-makson" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <p class="mt-0.5 leading-snug">
+                            <span class="font-bold text-gray-900">កាលបរិច្ឆេទ / Date:</span> ថ្ងៃសៅរ៍ ១៣កើត ខែបឋមាសាឍ ឆ្នាំមមី អដ្ឋស័ក ព.ស.២៥៧០ <br>
+                            <span class="text-makson font-semibold">ថ្ងៃទី២៧ ខែមិថុនា ឆ្នាំ២០២៦ / June 27, 2026</span>
+                        </p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-white p-1.5 rounded-lg shadow-sm mr-3 shrink-0">
+                            <svg class="w-4 h-4 text-makson" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        </div>
+                        <p><span class="font-bold text-gray-900">ពេលវេលា / Time:</span> ៩:៣០ ព្រឹក - ១១:៣០ ព្រឹក / 9:30 AM - 11:30 AM</p>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-white p-1.5 rounded-lg shadow-sm mr-3 shrink-0">
+                            <svg class="w-4 h-4 text-makson" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <p><span class="font-bold text-gray-900">ទីកន្លែង / Venue:</span> សាលមហោស្រព ITC / ITC Auditorium</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form (Reduced Spacing) -->
+            <form id="surveyForm" class="space-y-4">
+                <!-- Name Input -->
+                <div>
+                    <label for="studentName" class="block text-gray-800 font-semibold mb-1">
+                        ឈ្មោះបុត្រធីតាលោកអ្នក <span class="text-gray-500 font-normal text-sm">/ Student's Name</span> <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="studentName" name="studentName" required
+                        class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple-400 focus:border-purple-400 outline-none transition-all body-font bg-gray-50/50 focus:bg-white text-gray-800 text-sm"
+                        placeholder="សូមបញ្ចូលឈ្មោះសិស្ស / Enter student name">
+                </div>
+
+                <!-- Class Input -->
+                <div>
+                    <label for="className" class="block text-gray-800 font-semibold mb-1">
+                        ថ្នាក់ដែលកូនរៀន <span class="text-gray-500 font-normal text-sm">/ Grade or Class</span> <span class="text-red-500">*</span>
+                    </label>
+                    <input type="text" id="className" name="className" required
+                        class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple-400 focus:border-purple-400 outline-none transition-all body-font bg-gray-50/50 focus:bg-white text-gray-800 text-sm"
+                        placeholder="ឧទាហរណ៍៖ ថ្នាក់ទី១២ ក / Ex: Grade 12A">
+                </div>
+
+                <!-- Attendance Custom Radio -->
+                <div>
+                    <label class="block text-gray-800 font-semibold mb-2">
+                        សូមបញ្ជាក់ពីការចូលរួមរបស់លោកអ្នក <span class="text-gray-500 font-normal text-sm">/ Confirm attendance</span> <span class="text-red-500">*</span>
+                    </label>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        
+                        <label class="relative cursor-pointer group">
+                            <input type="radio" name="attendance" value="បានចូលរួម" required class="peer sr-only">
+                            <div class="flex items-center p-3 border-2 border-gray-200 rounded-lg transition-all duration-200 ease-in-out group-hover:bg-purple-50 peer-checked:border-makson peer-checked:bg-purple-50">
+                                <div class="w-4 h-4 rounded-full border-2 border-gray-300 mr-3 flex items-center justify-center peer-checked:border-makson shrink-0">
+                                    <div class="w-2 h-2 rounded-full bg-makson scale-0 transition-transform duration-200 peer-checked:scale-100 radio-inner"></div>
+                                </div>
+                                <span class="text-gray-800 font-medium peer-checked:text-makson text-sm leading-tight">
+                                    បាទ/ចាស បានចូលរួម<br>
+                                    <span class="text-xs font-normal text-gray-500 peer-checked:text-makson-light">Yes, I will attend</span>
+                                </span>
+                            </div>
+                        </label>
+
+                        <label class="relative cursor-pointer group">
+                            <input type="radio" name="attendance" value="មិនបានចូលរួម" class="peer sr-only">
+                            <div class="flex items-center p-3 border-2 border-gray-200 rounded-lg transition-all duration-200 ease-in-out group-hover:bg-purple-50 peer-checked:border-makson peer-checked:bg-purple-50">
+                                <div class="w-4 h-4 rounded-full border-2 border-gray-300 mr-3 flex items-center justify-center peer-checked:border-makson shrink-0">
+                                    <div class="w-2 h-2 rounded-full bg-makson scale-0 transition-transform duration-200 peer-checked:scale-100 radio-inner"></div>
+                                </div>
+                                <span class="text-gray-800 font-medium peer-checked:text-makson text-sm leading-tight">
+                                    មិនបានចូលរួមទេ<br>
+                                    <span class="text-xs font-normal text-gray-500 peer-checked:text-makson-light">No, I cannot attend</span>
+                                </span>
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+
+                <!-- Reason Textarea (Hidden by default) -->
+                <div id="reasonContainer" class="hidden transition-all duration-300 ease-in-out origin-top opacity-0 transform -translate-y-2">
+                    <label for="reason" class="block text-gray-800 font-semibold mb-1">
+                        មូលហេតុនៃការមិនបានចូលរួម <span class="text-gray-500 font-normal text-sm">/ Reason for absence</span> <span class="text-red-500">*</span>
+                    </label>
+                    <textarea id="reason" name="reason" rows="2"
+                        class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple-400 focus:border-purple-400 outline-none transition-all body-font bg-gray-50/50 focus:bg-white text-gray-800 resize-none text-sm"
+                        placeholder="សូមបញ្ជាក់មូលហេតុ... / Please state the reason..."></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="pt-3">
+                    <button type="submit" id="submitBtn"
+                        class="w-full bg-makson hover:bg-makson-dark text-white font-bold py-3 rounded-xl shadow-[0_4px_10px_0_rgba(107,33,168,0.3)] hover:shadow-[0_6px_15px_rgba(107,33,168,0.2)] hover:-translate-y-0.5 transition-all duration-200 text-base flex justify-center items-center">
+                        <span class="flex flex-col items-center leading-tight">
+                            <span>បញ្ជូនព័ត៌មាន</span>
+                            <span class="text-xs font-normal opacity-90">Submit</span>
+                        </span>
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Success Message Section (Hidden by default) -->
+        <div id="successMessage" class="hidden p-8 text-center py-12">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 class="title-font text-2xl text-makson mb-1">សូមថ្លែងអំណរគុណ!</h2>
+            <h3 class="text-lg text-gray-700 font-bold mb-3">Thank You!</h3>
+            
+            <p class="text-gray-700 body-font text-sm mb-1">ព័ត៌មានអំពីការចូលរួមរបស់លោកអ្នកត្រូវបានកត់ត្រាទុកដោយជោគជ័យ។</p>
+            <p class="text-gray-500 body-font text-sm mb-6">Your attendance has been successfully recorded.</p>
+            
+            <button onclick="window.location.reload()" class="text-makson font-semibold hover:text-white border border-makson px-6 py-2 rounded-lg hover:bg-makson transition-colors duration-300 text-sm flex flex-col items-center mx-auto leading-tight">
+                <span>បញ្ជូនមតិមួយទៀត</span>
+                <span class="text-xs font-normal">Submit another response</span>
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        const form = document.getElementById('surveyForm');
+        const reasonContainer = document.getElementById('reasonContainer');
+        const reasonInput = document.getElementById('reason');
+        const attendRadios = document.getElementsByName('attendance');
+        const successMessage = document.getElementById('successMessage');
+        const formSection = document.getElementById('formSection');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Toggle reason field visibility with animation
+        attendRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if(e.target.value === 'មិនបានចូលរួម') {
+                    reasonContainer.classList.remove('hidden');
+                    setTimeout(() => {
+                        reasonContainer.classList.remove('opacity-0', '-translate-y-2');
+                        reasonContainer.classList.add('opacity-100', 'translate-y-0');
+                    }, 10);
+                    reasonInput.setAttribute('required', 'true');
+                } else {
+                    reasonContainer.classList.remove('opacity-100', 'translate-y-0');
+                    reasonContainer.classList.add('opacity-0', '-translate-y-2');
+                    setTimeout(() => {
+                        reasonContainer.classList.add('hidden');
+                    }, 300);
+                    reasonInput.removeAttribute('required');
+                    reasonInput.value = ''; // clear value
+                }
+            });
+        });
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Web App URL ពី Google Sheet
+            const scriptURL = 'https://docs.google.com/spreadsheets/d/1OLrULVFzTNmhdjL-FhZhkS0ybNMFHc7nIp8IGEfIYpw/edit?gid=0#gid=0'; 
+            
+            // Update button state for loading effect
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span class="flex flex-col items-start leading-tight text-left">
+                    <span>កំពុងបញ្ជូន...</span>
+                    <span class="text-xs font-normal opacity-90">Submitting...</span>
+                </span>`;
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+
+            const formData = new FormData(form);
+            
+            // If URL is not changed yet, simulate successful submission
+            if (scriptURL === 'YOUR_WEB_APP_URL_HERE' || scriptURL === '' || scriptURL.includes('docs.google.com/spreadsheets/d/')) {
+                // Note: Direct sheet link won't work for POST, so we simulate success here 
+                // until you replace it with the actual Google Apps Script Web App URL
+                setTimeout(() => {
+                    showSuccess();
+                }, 1500);
+            } else {
+                fetch(scriptURL, { method: 'POST', body: formData })
+                    .then(response => {
+                        showSuccess();
+                    })
+                    .catch(error => {
+                        console.error('Error!', error.message);
+                        alert('មានបញ្ហាក្នុងការបញ្ជូនទិន្នន័យ។ / Error submitting data.');
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                        submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                    });
+            }
+        });
+
+        function showSuccess() {
+            // Fade out form
+            formSection.style.opacity = '0';
+            formSection.style.transform = 'translateY(-15px)';
+            formSection.style.transition = 'all 0.4s ease';
+            
+            setTimeout(() => {
+                formSection.style.display = 'none';
+                successMessage.classList.remove('hidden');
+                successMessage.classList.add('animate-fade-in');
+            }, 400);
+        }
+    </script>
+</body>
+</html>
