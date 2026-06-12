@@ -52,6 +52,59 @@
             background-color: #6b21a8;
             transform: scale(1);
         }
+
+        /* Floating Label Styling */
+        .input-group {
+            position: relative;
+            margin-top: 2rem; /* Make room for floating label */
+        }
+        
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            border: 1px solid #e5e7eb; /* gray-200 */
+            background-color: rgba(249, 250, 251, 0.5); /* gray-50/50 */
+            font-size: 0.875rem; /* text-sm */
+            color: #1f2937; /* gray-800 */
+            outline: none;
+            transition: all 0.2s ease;
+        }
+        
+        .input-field:focus {
+            border-color: #c084fc; /* purple-400 */
+            box-shadow: 0 0 0 2px rgba(192, 132, 252, 0.5);
+            background-color: #ffffff;
+        }
+        
+        .input-label {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280; /* gray-500 */
+            pointer-events: none;
+            transition: all 0.2s ease;
+            font-size: 0.875rem; /* text-sm */
+            background-color: transparent;
+            padding: 0 0.25rem;
+        }
+        
+        /* When input is focused or has valid content (not empty), move label up */
+        .input-field:focus ~ .input-label,
+        .input-field:not(:placeholder-shown) ~ .input-label {
+            top: -0.6rem;
+            left: 0.75rem;
+            font-size: 0.75rem; /* text-xs */
+            color: #6b21a8; /* makson */
+            font-weight: 600;
+            background-color: #ffffff;
+        }
+        
+        /* Hide original placeholder to rely on floating label */
+        .input-field::placeholder {
+            color: transparent;
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-purple-100 via-white to-purple-50 min-h-screen py-8 px-4 flex items-center justify-center">
@@ -83,9 +136,10 @@
         <div class="p-5 md:p-8" id="formSection">
             
             <div class="text-center mb-6">
-                <h2 class="text-xl md:text-2xl font-bold text-gray-800 mb-4">
-                    ការដាក់តាំងបង្ហាញលទ្ឋផលគម្រោងសិក្សា នៅថ្ងៃបញ្ចប់ឆ្នាំសិក្សា ២០២៥-២០២៦ 
-                    <span class="block text-base font-normal text-gray-500 mt-0.5">Student Learning Exhibits AY 2025-2026</span>
+                <!-- Changed to one line for Khmer, keeping English below -->
+                <h2 class="text-lg md:text-xl font-bold text-gray-800 mb-4 whitespace-nowrap overflow-hidden text-ellipsis px-2">
+                    កម្មវិធី តាំងបង្ហាញលទ្ឋផលគម្រោងសិក្សា នៅថ្ងៃបញ្ចប់ឆ្នាំសិក្សា ២០២៥-២០២៦
+                    <span class="block text-base font-normal text-gray-500 mt-0.5 whitespace-normal">End-Year Student Learning Exhibits AY 2025-2026</span>
                 </h2>
                 
                 <!-- Event Details Card (Reduced Spacing) -->
@@ -109,35 +163,37 @@
                         <div class="bg-white p-1.5 rounded-lg shadow-sm mr-3 shrink-0">
                             <svg class="w-4 h-4 text-makson" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </div>
-                        <p><span class="font-bold text-gray-900">ទីកន្លែង / Venue:</span> សបរិវេណខាងក្រោមជាន់ផ្ទាល់ដី នៃវិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា / ITC Ground floor</p>
+                        <p><span class="font-bold text-gray-900">ទីកន្លែង / Venue:</span> បរិវេណខាងក្រោមជាន់ផ្ទាល់ដី នៃវិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា / ITC Ground floor</p>
                     </div>
                 </div>
             </div>
 
-            <!-- Form (Reduced Spacing) -->
-            <form id="surveyForm" class="space-y-4">
-                <!-- Name Input -->
+            <form id="surveyForm" class="space-y-2">
+                <!-- Name Input (Floating Label) -->
                 <div>
-                    <label for="studentName" class="block text-gray-800 font-semibold mb-1">
+                    <label class="block text-gray-800 font-semibold mb-[-1rem] relative z-10">
                         ឈ្មោះបុត្រធីតាលោកអ្នក <span class="text-gray-500 font-normal text-sm">/ Student's Name</span> <span class="text-red-500">*</span>
                     </label>
-                    <input type="text" id="studentName" name="studentName" required
-                        class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple-400 focus:border-purple-400 outline-none transition-all body-font bg-gray-50/50 focus:bg-white text-gray-800 text-sm"
-                        placeholder="សូមបញ្ចូលឈ្មោះសិស្ស / Enter student name">
+                    <div class="input-group">
+                        <!-- Placeholder must exist for CSS :placeholder-shown to work -->
+                        <input type="text" id="studentName" name="studentName" required class="input-field body-font" placeholder=" ">
+                        <span class="input-label">សូមបញ្ចូលឈ្មោះសិស្ស / Enter student name</span>
+                    </div>
                 </div>
 
-                <!-- Class Input -->
-                <div>
-                    <label for="className" class="block text-gray-800 font-semibold mb-1">
+                <!-- Class Input (Floating Label) -->
+                <div class="mt-4">
+                    <label class="block text-gray-800 font-semibold mb-[-1rem] relative z-10">
                         ថ្នាក់ដែលកូនរៀន <span class="text-gray-500 font-normal text-sm">/ Grade or Class</span> <span class="text-red-500">*</span>
                     </label>
-                    <input type="text" id="className" name="className" required
-                        class="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:ring-2 focus:ring-purple-400 focus:border-purple-400 outline-none transition-all body-font bg-gray-50/50 focus:bg-white text-gray-800 text-sm"
-                        placeholder="ឧទាហរណ៍៖ ថ្នាក់ទី១២ ក / Ex: Grade 12A">
+                    <div class="input-group">
+                        <input type="text" id="className" name="className" required class="input-field body-font" placeholder=" ">
+                        <span class="input-label">ឧទាហរណ៍៖ ទី១-ក / Ex: G1A</span>
+                    </div>
                 </div>
 
                 <!-- Attendance Custom Radio -->
-                <div>
+                <div class="pt-4">
                     <label class="block text-gray-800 font-semibold mb-2">
                         សូមបញ្ជាក់ពីការចូលរួមរបស់លោកអ្នក <span class="text-gray-500 font-normal text-sm">/ Confirm attendance</span> <span class="text-red-500">*</span>
                     </label>
@@ -173,7 +229,7 @@
                 </div>
 
                 <!-- Reason Textarea (Hidden by default) -->
-                <div id="reasonContainer" class="hidden transition-all duration-300 ease-in-out origin-top opacity-0 transform -translate-y-2">
+                <div id="reasonContainer" class="hidden transition-all duration-300 ease-in-out origin-top opacity-0 transform -translate-y-2 pt-2">
                     <label for="reason" class="block text-gray-800 font-semibold mb-1">
                         មូលហេតុនៃការមិនបានចូលរួម <span class="text-gray-500 font-normal text-sm">/ Reason for absence</span> <span class="text-red-500">*</span>
                     </label>
@@ -183,7 +239,7 @@
                 </div>
 
                 <!-- Submit Button -->
-                <div class="pt-3">
+                <div class="pt-4">
                     <button type="submit" id="submitBtn"
                         class="w-full bg-makson hover:bg-makson-dark text-white font-bold py-3 rounded-xl shadow-[0_4px_10px_0_rgba(107,33,168,0.3)] hover:shadow-[0_6px_15px_rgba(107,33,168,0.2)] hover:-translate-y-0.5 transition-all duration-200 text-base flex justify-center items-center">
                         <span class="flex flex-col items-center leading-tight">
