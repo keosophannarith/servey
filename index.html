@@ -271,6 +271,18 @@
             </button>
         </div>
 
+        <!-- Closed Message Section (Hidden by default) -->
+        <div id="closedMessage" class="hidden p-8 text-center py-12">
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            </div>
+            <h2 class="title-font text-2xl text-red-500 mb-1">ទម្រង់ត្រូវបានបិទ!</h2>
+            <h3 class="text-lg text-gray-700 font-bold mb-3">Form Closed!</h3>
+            
+            <p class="text-gray-700 body-font text-sm mb-1">ពេលវេលានៃការទទួលព័ត៌មានត្រូវបានបញ្ចប់ត្រឹមនេះ។</p>
+            <p class="text-gray-500 body-font text-sm">The deadline for submission has passed.</p>
+        </div>
+
     </div>
 
     <script>
@@ -291,6 +303,18 @@
         const resetSelectionBtn = document.getElementById('resetSelectionBtn');
         const radioAttend = document.getElementById('radioAttend');
         const radioNotAttend = document.getElementById('radioNotAttend');
+        const closedMessage = document.getElementById('closedMessage');
+
+        // 🛑 កំណត់ថ្ងៃផុតកំណត់នៅទីនេះ / Set Deadline Date here (YYYY-MM-DDTHH:mm:ss)
+        // ឧទាហរណ៍៖ ថ្ងៃទី២៧ មិថុនា ២០២៦ ម៉ោង ២៣:៥៩ យប់
+        const DEADLINE_DATE = new Date('2026-06-27T23:59:59');
+
+        // ពិនិត្យមើលថាតើផុតកំណត់ឬនៅ / Check if form is expired
+        const now = new Date();
+        if (now > DEADLINE_DATE) {
+            form.style.display = 'none'; // លាក់ទម្រង់
+            closedMessage.classList.remove('hidden'); // បង្ហាញសារថាបិទ
+        }
 
         function updateRadioVisibility(selectedValue) {
             if (selectedValue === 'បានចូលរួម') {
